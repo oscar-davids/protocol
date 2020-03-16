@@ -26,5 +26,8 @@ module.exports = {
         inflation: 137,
         inflationChange: 3,
         targetBondingRate: 500000
+    },
+    pollCreator: {
+        pollCreationCost: 100
     }
 }
