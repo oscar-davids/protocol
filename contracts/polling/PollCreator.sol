@@ -16,7 +16,7 @@ contract PollCreator {
     event PollCreated(
         address indexed poll,
         bytes proposal,
-        uint256 endRound,
+        uint256 endBlock,
         uint256 quorum,
         uint256 threshold
     );

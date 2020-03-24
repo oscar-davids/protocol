@@ -14,7 +14,7 @@ contract Poll {
 
     modifier isActive() {
         require(
-            block.number < endBlock,
+            block.number <= endBlock,
             "poll is over"
         );
         _;
