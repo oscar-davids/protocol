@@ -2,7 +2,6 @@ import truffleAssert from "truffle-assertions"
 
 import Fixture from "./helpers/Fixture"
 import expectRevertWithReason from "../helpers/expectFail"
-import expectThrow from '../helpers/expectThrow'
 import {functionSig} from "../../utils/helpers"
 
 const Poll = artifacts.require("Poll")
