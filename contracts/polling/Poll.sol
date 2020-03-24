@@ -39,4 +39,13 @@ contract Poll {
     function no() external isActive {
         emit No(msg.sender);
     }
+
+    /**
+     * @dev Destroy the Poll contract after the poll has finished
+     *      Reverts if the poll is still active
+     */
+    function destroy() external {
+        require(block.number > endBlock, "poll is active");
+        selfdestruct(msg.sender);
+    }
 }

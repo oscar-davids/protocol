@@ -2,6 +2,7 @@ import truffleAssert from "truffle-assertions"
 
 import Fixture from "./helpers/Fixture"
 import expectRevertWithReason from "../helpers/expectFail"
+import expectThrow from '../helpers/expectThrow'
 import {functionSig} from "../../utils/helpers"
 
 const Poll = artifacts.require("Poll")
@@ -123,6 +124,18 @@ contract("Poll", accounts => {
         it("revert when poll is inactive", async () => {
             await fixture.rpc.waitUntilBlock(endBlock + 1)
             await expectRevertWithReason(poll.no(), "poll is over")
+        })
+    })
+
+    describe("destroy", () => {
+        it("revert when poll is active", async () => {
+            await expectRevertWithReason(poll.destroy(), "poll is active")
+        })
+
+        it("destroy the contract when poll has ended", async () => {
+            await fixture.rpc.waitUntilBlock(endBlock + 1)
+            let tx = await poll.destroy()
+            assert.equal(tx.receipt.status, true)
         })
     })
 })
